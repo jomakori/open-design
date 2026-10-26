@@ -82,7 +82,7 @@ spec:
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             exec:
-              command: ["wget", "-qO-", "http://{{ .Values.config.bindHost }}:{{ .Values.config.webPort }}/api/health"]
+              command: ["wget", "-qO-", "http://{{ include "open-design.bindHost" . }}:{{ .Values.config.webPort }}/api/health"]
             initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
@@ -91,7 +91,7 @@ spec:
           {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
             exec:
-              command: ["wget", "-qO-", "http://{{ .Values.config.bindHost }}:{{ .Values.config.webPort }}/api/health"]
+              command: ["wget", "-qO-", "http://{{ include "open-design.bindHost" . }}:{{ .Values.config.webPort }}/api/health"]
             initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}

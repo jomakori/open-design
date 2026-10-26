@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "open-design.labels" . | nindent 4 }}
 data:
-  OD_BIND_HOST: {{ if .Values.authProxy.enabled }}"127.0.0.1"{{ else }}"0.0.0.0"{{ end }}
+  OD_BIND_HOST: {{ include "open-design.bindHost" . | quote }}
   OD_PORT: {{ .Values.config.webPort | quote }}
   OD_WEB_PORT: {{ .Values.config.webPort | quote }}
 {{- if .Values.authProxy.enabled }}
